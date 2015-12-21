@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LuckyMoney</string>
+    <string name="action_settings">Settings</string>
+    <string name="break_luckymoney_service">抢红包服务关闭</string>
+    <string name="connect_luckymoney_service">抢红包服务打开</string>
+    <string name="desc">微信抢红包服务</string>
+</resources>
