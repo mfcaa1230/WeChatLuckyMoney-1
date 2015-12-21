@@ -3,7 +3,6 @@ package com.novel.luckymoney;
 import android.accessibilityservice.AccessibilityService;
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -18,7 +17,6 @@ import java.util.List;
 
 public class LuckyMoneyService extends AccessibilityService {
 
-    private Context mContext;
     private static final String TAG = "LuckyMoney";
 
     /** 微信包名*/
@@ -38,13 +36,6 @@ public class LuckyMoneyService extends AccessibilityService {
     /** 微信红包金额id*/
     private static final String WECHAT_LOCUEYMONEY_ID = "com.tencent.mm:id/b02";
 
-    public LuckyMoneyService(){
-
-    }
-
-    public LuckyMoneyService(Context context){
-        this.mContext = context;
-    }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -145,7 +136,8 @@ public class LuckyMoneyService extends AccessibilityService {
 
         for (AccessibilityNodeInfo id : listID)
         {
-            Toast.makeText(mContext,id.getText().toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,id.getText().toString(),Toast.LENGTH_SHORT).show();
+            break;
         }
 
     }
@@ -169,12 +161,12 @@ public class LuckyMoneyService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
-        Toast.makeText(mContext, mContext.getString(R.string.break_luckymoney_service),Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "服务中断",Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
-        Toast.makeText(mContext,mContext.getString(R.string.connect_luckymoney_service),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"服务开启",Toast.LENGTH_LONG).show();
     }
 }
